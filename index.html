@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1f6f68">
+    <title>胚布成本计算器</title>
+    <link rel="manifest" href="./manifest.webmanifest?v=5">
+    <link rel="stylesheet" href="./styles.css?v=5">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Grey Fabric Calculator</p>
+          <h1>胚布成本计算器</h1>
+        </div>
+        <button class="icon-button" id="resetBtn" type="button" aria-label="恢复默认值" title="恢复默认值">
+          <span aria-hidden="true">↺</span>
+        </button>
+      </header>
+
+      <section class="summary-band" aria-label="核心报价">
+        <div class="price-board">
+          <div class="price-board-head">
+            <span>机型</span>
+            <span>含税</span>
+            <span>不含税</span>
+          </div>
+          <div class="price-board-row">
+            <span>平机</span>
+            <strong id="plainTaxedTop">0.00</strong>
+            <strong id="plainUntaxedTop">0.00</strong>
+          </div>
+          <div class="price-board-row">
+            <span>小提花</span>
+            <strong id="smallTaxedTop">0.00</strong>
+            <strong id="smallUntaxedTop">0.00</strong>
+          </div>
+          <div class="price-board-row">
+            <span>大提花</span>
+            <strong id="largeTaxedTop">0.00</strong>
+            <strong id="largeUntaxedTop">0.00</strong>
+          </div>
+          <p>单位：元/米</p>
+        </div>
+        <div class="summary-grid">
+          <div>
+            <span>胚布克重</span>
+            <strong id="greyGsmTop">0.0</strong>
+          </div>
+          <div>
+            <span>成品克重</span>
+            <strong id="finishedGsmTop">0.0</strong>
+          </div>
+        </div>
+      </section>
+
+      <form id="calculator" class="content" autocomplete="off">
+        <section class="panel">
+          <div class="section-title">
+            <h2>经纬参数</h2>
+            <button class="ghost-button" id="toggleWeft2" type="button">纬密2</button>
+          </div>
+
+          <div class="yarn-table" role="group" aria-label="经纬纱输入">
+            <div class="table-head">
+              <span>项目</span>
+              <span>密度</span>
+              <span>支数</span>
+              <span>纱价</span>
+            </div>
+
+            <label class="input-row">
+              <span>经纱</span>
+              <input data-field="warpDensity" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="warpCount" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="warpPrice" inputmode="decimal" type="number" step="100" min="0">
+            </label>
+
+            <label class="input-row">
+              <span>纬纱</span>
+              <input data-field="weftDensity" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weftCount" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weftPrice" inputmode="decimal" type="number" step="100" min="0">
+            </label>
+
+            <label class="input-row optional-row" id="weft2Row">
+              <span>纬纱2</span>
+              <input data-field="weft2Density" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weft2Count" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weft2Price" inputmode="decimal" type="number" step="100" min="0">
+            </label>
+          </div>
+
+          <p class="hint">纱价填写元/吨，例如 33000。软件会按表格算法自动换算。</p>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">
+            <h2>门幅和机型</h2>
+          </div>
+          <div class="field-grid">
+            <label>
+              <span>胚布门幅 英寸</span>
+              <input data-field="greyWidth" inputmode="decimal" type="number" step="0.1" min="0">
+            </label>
+            <label>
+              <span>成品门幅 cm</span>
+              <input data-field="finishedWidth" inputmode="decimal" type="number" step="0.1" min="0">
+            </label>
+            <label>
+              <span>税点系数</span>
+              <input data-field="taxFactor" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+            <label>
+              <span>计算系数</span>
+              <input data-field="coefficient" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">
+            <h2>加工费</h2>
+          </div>
+          <div class="machine-fees">
+            <label>
+              <span>平机</span>
+              <input data-field="plainFee" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+            <label>
+              <span>小提花</span>
+              <input data-field="smallJacquardFee" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+            <label>
+              <span>大提花</span>
+              <input data-field="largeJacquardFee" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+          </div>
+        </section>
+
+        <section class="results" aria-label="计算结果">
+          <article class="result-row">
+            <div>
+              <span>平机</span>
+              <small>含税 / 不含税</small>
+            </div>
+            <strong><b id="plainTaxed">0.00</b><em id="plainUntaxed">0.00</em></strong>
+          </article>
+          <article class="result-row">
+            <div>
+              <span>小提花</span>
+              <small>含税 / 不含税</small>
+            </div>
+            <strong><b id="smallTaxed">0.00</b><em id="smallUntaxed">0.00</em></strong>
+          </article>
+          <article class="result-row">
+            <div>
+              <span>大提花</span>
+              <small>含税 / 不含税</small>
+            </div>
+            <strong><b id="largeTaxed">0.00</b><em id="largeUntaxed">0.00</em></strong>
+          </article>
+        </section>
+
+        <section class="details">
+          <div>
+            <span>总米重</span>
+            <strong id="meterWeight">0.0</strong>
+            <small>克/米</small>
+          </div>
+          <div>
+            <span>胚布克重</span>
+            <strong id="greyGsm">0.0</strong>
+            <small>g/m²</small>
+          </div>
+          <div>
+            <span>成品克重</span>
+            <strong id="finishedGsm">0.0</strong>
+            <small>g/m²</small>
+          </div>
+        </section>
+
+        <section class="panel saved-panel">
+          <div class="section-title">
+            <h2>数据表保存</h2>
+          </div>
+          <div class="save-box">
+            <label>
+              <span>面料名称</span>
+              <input id="fabricName" type="text" maxlength="40" placeholder="例如：单竹节棉麻 55×48">
+            </label>
+            <button class="primary-button" id="saveFabricBtn" type="button">保存</button>
+          </div>
+          <p class="hint" id="saveStatus">保存后会留在这台手机里，以后可以直接调用。</p>
+          <div class="saved-list" id="savedList" aria-live="polite"></div>
+        </section>
+      </form>
+    </main>
+
+    <script src="./app.js?v=5"></script>
+  </body>
+</html>

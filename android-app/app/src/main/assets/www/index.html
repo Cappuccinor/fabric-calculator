@@ -1,0 +1,204 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1f6f68">
+    <title>鑳氬竷鎴愭湰璁＄畻鍣?/title>
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Grey Fabric Calculator</p>
+          <h1>鑳氬竷鎴愭湰璁＄畻鍣?/h1>
+        </div>
+        <button class="icon-button" id="resetBtn" type="button" aria-label="鎭㈠榛樿鍊? title="鎭㈠榛樿鍊?>
+          <span aria-hidden="true">鈫?/span>
+        </button>
+      </header>
+
+      <section class="summary-band" aria-label="鏍稿績鎶ヤ环">
+        <div class="price-board">
+          <div class="price-board-head">
+            <span>鏈哄瀷</span>
+            <span>鍚◣</span>
+            <span>涓嶅惈绋?/span>
+          </div>
+          <div class="price-board-row">
+            <span>骞虫満</span>
+            <strong id="plainTaxedTop">0.00</strong>
+            <strong id="plainUntaxedTop">0.00</strong>
+          </div>
+          <div class="price-board-row">
+            <span>灏忔彁鑺?/span>
+            <strong id="smallTaxedTop">0.00</strong>
+            <strong id="smallUntaxedTop">0.00</strong>
+          </div>
+          <div class="price-board-row">
+            <span>澶ф彁鑺?/span>
+            <strong id="largeTaxedTop">0.00</strong>
+            <strong id="largeUntaxedTop">0.00</strong>
+          </div>
+          <p>鍗曚綅锛氬厓/绫?/p>
+        </div>
+        <div class="summary-grid">
+          <div>
+            <span>鑳氬竷鍏嬮噸</span>
+            <strong id="greyGsmTop">0.0</strong>
+          </div>
+          <div>
+            <span>鎴愬搧鍏嬮噸</span>
+            <strong id="finishedGsmTop">0.0</strong>
+          </div>
+        </div>
+      </section>
+
+      <form id="calculator" class="content" autocomplete="off">
+        <section class="panel">
+          <div class="section-title">
+            <h2>缁忕含鍙傛暟</h2>
+            <button class="ghost-button" id="toggleWeft2" type="button">绾瘑2</button>
+          </div>
+
+          <div class="yarn-table" role="group" aria-label="缁忕含绾辫緭鍏?>
+            <div class="table-head">
+              <span>椤圭洰</span>
+              <span>瀵嗗害</span>
+              <span>鏀暟</span>
+              <span>绾变环</span>
+            </div>
+
+            <label class="input-row">
+              <span>缁忕罕</span>
+              <input data-field="warpDensity" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="warpCount" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="warpPrice" inputmode="decimal" type="number" step="100" min="0">
+            </label>
+
+            <label class="input-row">
+              <span>绾罕</span>
+              <input data-field="weftDensity" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weftCount" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weftPrice" inputmode="decimal" type="number" step="100" min="0">
+            </label>
+
+            <label class="input-row optional-row" id="weft2Row">
+              <span>绾罕2</span>
+              <input data-field="weft2Density" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weft2Count" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weft2Price" inputmode="decimal" type="number" step="100" min="0">
+            </label>
+          </div>
+
+          <p class="hint">绾变环濉啓鍏?鍚紝渚嬪 33000銆傝蒋浠朵細鎸夎〃鏍肩畻娉曡嚜鍔ㄦ崲绠椼€?/p>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">
+            <h2>闂ㄥ箙鍜屾満鍨?/h2>
+          </div>
+          <div class="field-grid">
+            <label>
+              <span>鑳氬竷闂ㄥ箙 鑻卞</span>
+              <input data-field="greyWidth" inputmode="decimal" type="number" step="0.1" min="0">
+            </label>
+            <label>
+              <span>鎴愬搧闂ㄥ箙 cm</span>
+              <input data-field="finishedWidth" inputmode="decimal" type="number" step="0.1" min="0">
+            </label>
+            <label>
+              <span>绋庣偣绯绘暟</span>
+              <input data-field="taxFactor" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+            <label>
+              <span>璁＄畻绯绘暟</span>
+              <input data-field="coefficient" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">
+            <h2>鍔犲伐璐?/h2>
+          </div>
+          <div class="machine-fees">
+            <label>
+              <span>骞虫満</span>
+              <input data-field="plainFee" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+            <label>
+              <span>灏忔彁鑺?/span>
+              <input data-field="smallJacquardFee" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+            <label>
+              <span>澶ф彁鑺?/span>
+              <input data-field="largeJacquardFee" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+          </div>
+        </section>
+
+        <section class="results" aria-label="璁＄畻缁撴灉">
+          <article class="result-row">
+            <div>
+              <span>骞虫満</span>
+              <small>鍚◣ / 涓嶅惈绋?/small>
+            </div>
+            <strong><b id="plainTaxed">0.00</b><em id="plainUntaxed">0.00</em></strong>
+          </article>
+          <article class="result-row">
+            <div>
+              <span>灏忔彁鑺?/span>
+              <small>鍚◣ / 涓嶅惈绋?/small>
+            </div>
+            <strong><b id="smallTaxed">0.00</b><em id="smallUntaxed">0.00</em></strong>
+          </article>
+          <article class="result-row">
+            <div>
+              <span>澶ф彁鑺?/span>
+              <small>鍚◣ / 涓嶅惈绋?/small>
+            </div>
+            <strong><b id="largeTaxed">0.00</b><em id="largeUntaxed">0.00</em></strong>
+          </article>
+        </section>
+
+        <section class="details">
+          <div>
+            <span>鎬荤背閲?/span>
+            <strong id="meterWeight">0.0</strong>
+            <small>鍏?绫?/small>
+          </div>
+          <div>
+            <span>鑳氬竷鍏嬮噸</span>
+            <strong id="greyGsm">0.0</strong>
+            <small>g/m虏</small>
+          </div>
+          <div>
+            <span>鎴愬搧鍏嬮噸</span>
+            <strong id="finishedGsm">0.0</strong>
+            <small>g/m虏</small>
+          </div>
+        </section>
+
+        <section class="panel saved-panel">
+          <div class="section-title">
+            <h2>鏁版嵁琛ㄤ繚瀛?/h2>
+          </div>
+          <div class="save-box">
+            <label>
+              <span>闈㈡枡鍚嶇О</span>
+              <input id="fabricName" type="text" maxlength="40" placeholder="渚嬪锛氬崟绔硅妭妫夐夯 55脳48">
+            </label>
+            <button class="primary-button" id="saveFabricBtn" type="button">淇濆瓨</button>
+          </div>
+          <p class="hint" id="saveStatus">淇濆瓨鍚庝細鐣欏湪杩欏彴鎵嬫満閲岋紝浠ュ悗鍙互鐩存帴璋冪敤銆?/p>
+          <div class="saved-list" id="savedList" aria-live="polite"></div>
+        </section>
+      </form>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

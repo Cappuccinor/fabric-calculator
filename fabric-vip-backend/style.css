@@ -1,0 +1,70 @@
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #f6f9f7;
+    color: #17201f;
+}
+a { color: #176f68; text-decoration: none; }
+.page { max-width: 1100px; margin: 0 auto; padding: 28px; }
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+h1, h2 { margin: 0; }
+header p { margin: 6px 0 0; color: #66706d; }
+.panel, .login {
+    background: white;
+    border: 1px solid #dde7e3;
+    padding: 20px;
+    margin-bottom: 18px;
+}
+.login { max-width: 420px; margin: 80px auto; }
+label { display: block; color: #66706d; font-size: 14px; }
+input {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    padding: 11px 12px;
+    border: 1px solid #cddad5;
+    font-size: 16px;
+}
+button {
+    border: 0;
+    background: #176f68;
+    color: white;
+    padding: 12px 18px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+    gap: 12px;
+    align-items: end;
+    margin-top: 14px;
+}
+.search {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.search input { max-width: 320px; margin: 0; }
+table { width: 100%; border-collapse: collapse; }
+th, td {
+    border-bottom: 1px solid #edf2f0;
+    padding: 12px 10px;
+    text-align: left;
+}
+th { color: #66706d; font-weight: 600; }
+.ok { color: #176f68; font-weight: 700; }
+.off { color: #9a475e; font-weight: 700; }
+.error { background: #fff0f0; color: #a62b2b; padding: 10px; }
+@media (max-width: 850px) {
+    .grid { grid-template-columns: 1fr; }
+    table { font-size: 14px; }
+}

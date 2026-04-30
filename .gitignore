@@ -1,0 +1,26 @@
+﻿# Android
+*.apk
+*.idsig
+*.dex
+*.class
+.gradle/
+build/
+local.properties
+
+# Signing
+*.jks
+release-signing-info.txt
+
+# IDE
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Archives
+*.zip
+
+# Excel temp
+~$*

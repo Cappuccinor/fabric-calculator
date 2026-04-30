@@ -1,0 +1,1035 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1f6f68">
+    <title>鑳氬竷鎴愭湰璁＄畻鍣?/title>
+    <style>
+:root {
+  color-scheme: light;
+  --ink: #17201f;
+  --muted: #63706d;
+  --line: #d8e1df;
+  --paper: #f7faf8;
+  --panel: #ffffff;
+  --accent: #1f6f68;
+  --accent-strong: #164f4a;
+  --amber: #b56b21;
+  --rose: #8d3f55;
+  --shadow: 0 16px 45px rgba(31, 54, 50, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(90deg, rgba(31, 111, 104, 0.05) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(31, 111, 104, 0.04) 1px, transparent 1px),
+    var(--paper);
+  background-size: 18px 18px;
+  color: var(--ink);
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-shell {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  padding: 18px 14px 28px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 4px 2px 16px;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 17px;
+}
+
+.icon-button,
+.ghost-button,
+.primary-button,
+.saved-actions button {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.icon-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  font-size: 24px;
+}
+
+.ghost-button {
+  min-height: 38px;
+  border-radius: 8px;
+  padding: 0 12px;
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.ghost-button.active {
+  background: #e6f2ef;
+  border-color: #9cc9c1;
+}
+
+.primary-button {
+  min-height: 42px;
+  border-color: var(--accent);
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+.summary-band {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.price-board,
+.summary-grid,
+.panel,
+.result-row,
+.details > div {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.price-board {
+  padding: 18px;
+}
+
+.price-board span,
+.summary-grid span,
+.result-row span,
+.details span,
+label span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.price-board p,
+.details small,
+.result-row small,
+.hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.price-board p {
+  margin: 12px 0 0;
+}
+
+.price-board-head,
+.price-board-row {
+  display: grid;
+  grid-template-columns: 82px repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-items: center;
+}
+
+.price-board-head {
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  font-weight: 700;
+}
+
+.price-board-row {
+  min-height: 43px;
+  border-bottom: 1px solid rgba(216, 225, 223, 0.72);
+}
+
+.price-board-row:last-of-type {
+  border-bottom: 0;
+}
+
+.price-board-row > span {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.price-board-row strong {
+  color: var(--accent-strong);
+  font-size: 24px;
+  line-height: 1;
+}
+
+.price-board-row strong:nth-child(3) {
+  color: var(--amber);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.summary-grid div {
+  padding: 14px;
+}
+
+.summary-grid div + div {
+  border-top: 1px solid var(--line);
+}
+
+.summary-grid strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 22px;
+}
+
+.content {
+  display: grid;
+  gap: 14px;
+}
+
+.panel {
+  padding: 16px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.yarn-table {
+  display: grid;
+  gap: 8px;
+}
+
+.table-head,
+.input-row {
+  display: grid;
+  grid-template-columns: 58px repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  align-items: center;
+}
+
+.table-head {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.input-row > span {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.optional-row {
+  display: none;
+}
+
+.optional-row.visible {
+  display: grid;
+}
+
+input {
+  width: 100%;
+  min-width: 0;
+  height: 42px;
+  border: 1px solid #c8d4d1;
+  border-radius: 8px;
+  background: #fbfdfc;
+  color: var(--ink);
+  padding: 0 10px;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(31, 111, 104, 0.14);
+}
+
+.hint {
+  margin: 12px 0 0;
+}
+
+.field-grid,
+.machine-fees {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.field-grid label,
+.machine-fees label {
+  display: grid;
+  gap: 6px;
+}
+
+.machine-fees {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+}
+
+.result-row strong {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  text-align: right;
+}
+
+.result-row b,
+.result-row em {
+  font-style: normal;
+}
+
+.result-row b {
+  color: var(--accent-strong);
+  font-size: 21px;
+}
+
+.result-row em {
+  color: var(--amber);
+  font-size: 20px;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.details > div {
+  padding: 14px;
+}
+
+.details strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--rose);
+  font-size: 24px;
+}
+
+.save-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px;
+  gap: 10px;
+  align-items: end;
+}
+
+.save-box label {
+  display: grid;
+  gap: 6px;
+}
+
+.saved-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.saved-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdfc;
+}
+
+.saved-item strong {
+  display: block;
+  font-size: 15px;
+}
+
+.saved-item span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.saved-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.saved-actions button {
+  min-height: 36px;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.saved-actions button[data-action="load"] {
+  border-color: #9cc9c1;
+  color: var(--accent-strong);
+}
+
+.saved-actions button[data-action="delete"] {
+  border-color: #e6b7b7;
+  color: #9a3535;
+}
+
+.empty-state {
+  padding: 12px;
+  border: 1px dashed #c8d4d1;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    padding: 14px 10px 22px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .summary-band,
+  .results,
+  .details,
+  .field-grid,
+  .machine-fees,
+  .save-box,
+  .saved-item {
+    grid-template-columns: 1fr;
+  }
+
+  .saved-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .summary-grid div + div {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+
+  .table-head,
+  .input-row {
+    grid-template-columns: 48px repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  input {
+    height: 40px;
+    padding: 0 8px;
+  }
+
+  .result-row {
+    min-height: 76px;
+  }
+}
+
+@media (max-width: 390px) {
+  .price-board {
+    padding: 14px;
+  }
+
+  .price-board-head,
+  .price-board-row {
+    grid-template-columns: 64px repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .price-board-row strong {
+    font-size: 21px;
+  }
+
+  .table-head,
+  .input-row {
+    grid-template-columns: 44px repeat(3, minmax(0, 1fr));
+  }
+
+  .input-row > span,
+  .table-head {
+    font-size: 11px;
+  }
+}
+
+</style>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Grey Fabric Calculator</p>
+          <h1>鑳氬竷鎴愭湰璁＄畻鍣?/h1>
+        </div>
+        <button class="icon-button" id="resetBtn" type="button" aria-label="鎭㈠榛樿鍊? title="鎭㈠榛樿鍊?>
+          <span aria-hidden="true">鈫?/span>
+        </button>
+      </header>
+
+      <section class="summary-band" aria-label="鏍稿績鎶ヤ环">
+        <div class="price-board">
+          <div class="price-board-head">
+            <span>鏈哄瀷</span>
+            <span>鍚◣</span>
+            <span>涓嶅惈绋?/span>
+          </div>
+          <div class="price-board-row">
+            <span>骞虫満</span>
+            <strong id="plainTaxedTop">0.00</strong>
+            <strong id="plainUntaxedTop">0.00</strong>
+          </div>
+          <div class="price-board-row">
+            <span>灏忔彁鑺?/span>
+            <strong id="smallTaxedTop">0.00</strong>
+            <strong id="smallUntaxedTop">0.00</strong>
+          </div>
+          <div class="price-board-row">
+            <span>澶ф彁鑺?/span>
+            <strong id="largeTaxedTop">0.00</strong>
+            <strong id="largeUntaxedTop">0.00</strong>
+          </div>
+          <p>鍗曚綅锛氬厓/绫?/p>
+        </div>
+        <div class="summary-grid">
+          <div>
+            <span>鑳氬竷鍏嬮噸</span>
+            <strong id="greyGsmTop">0.0</strong>
+          </div>
+          <div>
+            <span>鎴愬搧鍏嬮噸</span>
+            <strong id="finishedGsmTop">0.0</strong>
+          </div>
+        </div>
+      </section>
+
+      <form id="calculator" class="content" autocomplete="off">
+        <section class="panel">
+          <div class="section-title">
+            <h2>缁忕含鍙傛暟</h2>
+            <button class="ghost-button" id="toggleWeft2" type="button">绾瘑2</button>
+          </div>
+
+          <div class="yarn-table" role="group" aria-label="缁忕含绾辫緭鍏?>
+            <div class="table-head">
+              <span>椤圭洰</span>
+              <span>瀵嗗害</span>
+              <span>鏀暟</span>
+              <span>绾变环</span>
+            </div>
+
+            <label class="input-row">
+              <span>缁忕罕</span>
+              <input data-field="warpDensity" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="warpCount" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="warpPrice" inputmode="decimal" type="number" step="100" min="0">
+            </label>
+
+            <label class="input-row">
+              <span>绾罕</span>
+              <input data-field="weftDensity" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weftCount" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weftPrice" inputmode="decimal" type="number" step="100" min="0">
+            </label>
+
+            <label class="input-row optional-row" id="weft2Row">
+              <span>绾罕2</span>
+              <input data-field="weft2Density" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weft2Count" inputmode="decimal" type="number" step="0.01" min="0">
+              <input data-field="weft2Price" inputmode="decimal" type="number" step="100" min="0">
+            </label>
+          </div>
+
+          <p class="hint">绾变环濉啓鍏?鍚紝渚嬪 33000銆傝蒋浠朵細鎸夎〃鏍肩畻娉曡嚜鍔ㄦ崲绠椼€?/p>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">
+            <h2>闂ㄥ箙鍜屾満鍨?/h2>
+          </div>
+          <div class="field-grid">
+            <label>
+              <span>鑳氬竷闂ㄥ箙 鑻卞</span>
+              <input data-field="greyWidth" inputmode="decimal" type="number" step="0.1" min="0">
+            </label>
+            <label>
+              <span>鎴愬搧闂ㄥ箙 cm</span>
+              <input data-field="finishedWidth" inputmode="decimal" type="number" step="0.1" min="0">
+            </label>
+            <label>
+              <span>绋庣偣绯绘暟</span>
+              <input data-field="taxFactor" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+            <label>
+              <span>璁＄畻绯绘暟</span>
+              <input data-field="coefficient" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">
+            <h2>鍔犲伐璐?/h2>
+          </div>
+          <div class="machine-fees">
+            <label>
+              <span>骞虫満</span>
+              <input data-field="plainFee" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+            <label>
+              <span>灏忔彁鑺?/span>
+              <input data-field="smallJacquardFee" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+            <label>
+              <span>澶ф彁鑺?/span>
+              <input data-field="largeJacquardFee" inputmode="decimal" type="number" step="0.001" min="0">
+            </label>
+          </div>
+        </section>
+
+        <section class="results" aria-label="璁＄畻缁撴灉">
+          <article class="result-row">
+            <div>
+              <span>骞虫満</span>
+              <small>鍚◣ / 涓嶅惈绋?/small>
+            </div>
+            <strong><b id="plainTaxed">0.00</b><em id="plainUntaxed">0.00</em></strong>
+          </article>
+          <article class="result-row">
+            <div>
+              <span>灏忔彁鑺?/span>
+              <small>鍚◣ / 涓嶅惈绋?/small>
+            </div>
+            <strong><b id="smallTaxed">0.00</b><em id="smallUntaxed">0.00</em></strong>
+          </article>
+          <article class="result-row">
+            <div>
+              <span>澶ф彁鑺?/span>
+              <small>鍚◣ / 涓嶅惈绋?/small>
+            </div>
+            <strong><b id="largeTaxed">0.00</b><em id="largeUntaxed">0.00</em></strong>
+          </article>
+        </section>
+
+        <section class="details">
+          <div>
+            <span>鎬荤背閲?/span>
+            <strong id="meterWeight">0.0</strong>
+            <small>鍏?绫?/small>
+          </div>
+          <div>
+            <span>鑳氬竷鍏嬮噸</span>
+            <strong id="greyGsm">0.0</strong>
+            <small>g/m虏</small>
+          </div>
+          <div>
+            <span>鎴愬搧鍏嬮噸</span>
+            <strong id="finishedGsm">0.0</strong>
+            <small>g/m虏</small>
+          </div>
+        </section>
+
+        <section class="panel saved-panel">
+          <div class="section-title">
+            <h2>鏁版嵁琛ㄤ繚瀛?/h2>
+          </div>
+          <div class="save-box">
+            <label>
+              <span>闈㈡枡鍚嶇О</span>
+              <input id="fabricName" type="text" maxlength="40" placeholder="渚嬪锛氬崟绔硅妭妫夐夯 55脳48">
+            </label>
+            <button class="primary-button" id="saveFabricBtn" type="button">淇濆瓨</button>
+          </div>
+          <p class="hint" id="saveStatus">淇濆瓨鍚庝細鐣欏湪杩欏彴鎵嬫満閲岋紝浠ュ悗鍙互鐩存帴璋冪敤銆?/p>
+          <div class="saved-list" id="savedList" aria-live="polite"></div>
+        </section>
+      </form>
+    </main>
+
+    <script>
+const defaults = {
+  warpDensity: 55,
+  warpCount: 14,
+  warpPrice: 33000,
+  weftDensity: 48,
+  weftCount: 16,
+  weftPrice: 32000,
+  weft2Density: 0,
+  weft2Count: 16,
+  weft2Price: 33000,
+  greyWidth: 108,
+  finishedWidth: 250,
+  taxFactor: 0.96,
+  coefficient: 0.064,
+  plainFee: 0.03,
+  smallJacquardFee: 0.035,
+  largeJacquardFee: 0.05
+};
+
+const STORAGE_KEY = "greyFabricCalculator.records.v1";
+const fieldNames = Object.keys(defaults);
+let latestResult = null;
+
+const fields = {};
+const calculator = document.querySelector("#calculator");
+const resetBtn = document.querySelector("#resetBtn");
+const toggleWeft2 = document.querySelector("#toggleWeft2");
+const weft2Row = document.querySelector("#weft2Row");
+const fabricName = document.querySelector("#fabricName");
+const saveFabricBtn = document.querySelector("#saveFabricBtn");
+const savedList = document.querySelector("#savedList");
+const saveStatus = document.querySelector("#saveStatus");
+
+document.querySelectorAll("[data-field]").forEach((input) => {
+  fields[input.dataset.field] = input;
+});
+
+const output = {
+  mainPrice: document.querySelector("#mainPrice"),
+  plainTaxedTop: document.querySelector("#plainTaxedTop"),
+  plainUntaxedTop: document.querySelector("#plainUntaxedTop"),
+  smallTaxedTop: document.querySelector("#smallTaxedTop"),
+  smallUntaxedTop: document.querySelector("#smallUntaxedTop"),
+  largeTaxedTop: document.querySelector("#largeTaxedTop"),
+  largeUntaxedTop: document.querySelector("#largeUntaxedTop"),
+  greyGsmTop: document.querySelector("#greyGsmTop"),
+  finishedGsmTop: document.querySelector("#finishedGsmTop"),
+  plainTaxed: document.querySelector("#plainTaxed"),
+  plainUntaxed: document.querySelector("#plainUntaxed"),
+  smallTaxed: document.querySelector("#smallTaxed"),
+  smallUntaxed: document.querySelector("#smallUntaxed"),
+  largeTaxed: document.querySelector("#largeTaxed"),
+  largeUntaxed: document.querySelector("#largeUntaxed"),
+  meterWeight: document.querySelector("#meterWeight"),
+  greyGsm: document.querySelector("#greyGsm"),
+  finishedGsm: document.querySelector("#finishedGsm")
+};
+
+function numberValue(name) {
+  const value = Number(fields[name].value);
+  return Number.isFinite(value) ? value : 0;
+}
+
+function fmt(value, digits = 2) {
+  if (!Number.isFinite(value)) return "0.00";
+  return value.toFixed(digits);
+}
+
+function collectState() {
+  return fieldNames.reduce((state, name) => {
+    state[name] = numberValue(name);
+    return state;
+  }, {});
+}
+
+function applyState(state) {
+  fieldNames.forEach((name) => {
+    if (Object.prototype.hasOwnProperty.call(state, name)) {
+      fields[name].value = state[name];
+    }
+  });
+
+  const showWeft2 = numberValue("weft2Density") > 0;
+  weft2Row.classList.toggle("visible", showWeft2);
+  toggleWeft2.classList.toggle("active", showWeft2);
+  calculate();
+}
+
+function readRecords() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  } catch (error) {
+    return [];
+  }
+}
+
+function writeRecords(records) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+}
+
+function setSaveStatus(message) {
+  saveStatus.textContent = message;
+}
+
+function yarnCost(density, count, width, coefficient, pricePerTon, taxFactor) {
+  if (density <= 0 || count <= 0 || width <= 0 || coefficient <= 0 || pricePerTon <= 0) {
+    return { weightPart: 0, taxed: 0, untaxed: 0 };
+  }
+
+  const weightPart = (density / count) * width * coefficient;
+  const calcPrice = pricePerTon / 100000;
+  const taxed = weightPart * calcPrice;
+  const untaxed = taxed * taxFactor;
+
+  return { weightPart, taxed, untaxed };
+}
+
+function machineResult(feeRate, weftDensity, weft2Density, yarnTaxed, yarnUntaxed) {
+  const processing = (weftDensity + weft2Density) * feeRate;
+  return {
+    taxed: yarnTaxed + processing,
+    untaxed: yarnUntaxed + processing
+  };
+}
+
+function calculate() {
+  const coefficient = numberValue("coefficient");
+  const taxFactor = numberValue("taxFactor");
+  const greyWidth = numberValue("greyWidth");
+  const finishedWidth = numberValue("finishedWidth");
+  const weftDensity = numberValue("weftDensity");
+  const weft2Density = numberValue("weft2Density");
+
+  const warp = yarnCost(
+    numberValue("warpDensity"),
+    numberValue("warpCount"),
+    greyWidth,
+    coefficient,
+    numberValue("warpPrice"),
+    taxFactor
+  );
+  const weft = yarnCost(
+    weftDensity,
+    numberValue("weftCount"),
+    greyWidth,
+    coefficient,
+    numberValue("weftPrice"),
+    taxFactor
+  );
+  const weft2 = yarnCost(
+    weft2Density,
+    numberValue("weft2Count"),
+    greyWidth,
+    coefficient,
+    numberValue("weft2Price"),
+    taxFactor
+  );
+
+  const yarnTaxed = warp.taxed + weft.taxed + weft2.taxed;
+  const yarnUntaxed = warp.untaxed + weft.untaxed + weft2.untaxed;
+  const meterWeight = (warp.weightPart + weft.weightPart + weft2.weightPart) * 10;
+  const greyGsm = greyWidth > 0 ? (meterWeight / (greyWidth * 2.54)) * 100 : 0;
+  const finishedGsm = finishedWidth > 0 ? (meterWeight / finishedWidth) * 100 : 0;
+
+  const plain = machineResult(numberValue("plainFee"), weftDensity, weft2Density, yarnTaxed, yarnUntaxed);
+  const small = machineResult(numberValue("smallJacquardFee"), weftDensity, weft2Density, yarnTaxed, yarnUntaxed);
+  const large = machineResult(numberValue("largeJacquardFee"), weftDensity, weft2Density, yarnTaxed, yarnUntaxed);
+
+  latestResult = {
+    plainTaxed: plain.taxed,
+    plainUntaxed: plain.untaxed,
+    smallTaxed: small.taxed,
+    smallUntaxed: small.untaxed,
+    largeTaxed: large.taxed,
+    largeUntaxed: large.untaxed,
+    meterWeight,
+    greyGsm,
+    finishedGsm
+  };
+
+  output.plainTaxedTop.textContent = fmt(plain.taxed, 2);
+  output.plainUntaxedTop.textContent = fmt(plain.untaxed, 2);
+  output.smallTaxedTop.textContent = fmt(small.taxed, 2);
+  output.smallUntaxedTop.textContent = fmt(small.untaxed, 2);
+  output.largeTaxedTop.textContent = fmt(large.taxed, 2);
+  output.largeUntaxedTop.textContent = fmt(large.untaxed, 2);
+  output.greyGsmTop.textContent = fmt(greyGsm, 2);
+  output.finishedGsmTop.textContent = fmt(finishedGsm, 2);
+  output.plainTaxed.textContent = fmt(plain.taxed, 2);
+  output.plainUntaxed.textContent = fmt(plain.untaxed, 2);
+  output.smallTaxed.textContent = fmt(small.taxed, 2);
+  output.smallUntaxed.textContent = fmt(small.untaxed, 2);
+  output.largeTaxed.textContent = fmt(large.taxed, 2);
+  output.largeUntaxed.textContent = fmt(large.untaxed, 2);
+  output.meterWeight.textContent = fmt(meterWeight, 2);
+  output.greyGsm.textContent = fmt(greyGsm, 2);
+  output.finishedGsm.textContent = fmt(finishedGsm, 2);
+}
+
+function loadDefaults() {
+  applyState(defaults);
+}
+
+function formatTime(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
+function renderSavedList() {
+  const records = readRecords();
+
+  if (!records.length) {
+    savedList.innerHTML = '<div class="empty-state">杩樻病鏈変繚瀛樿繃鐨勯潰鏂欍€?/div>';
+    return;
+  }
+
+  savedList.innerHTML = records.map((record) => `
+    <article class="saved-item">
+      <div>
+        <strong>${escapeHtml(record.name)}</strong>
+        <span>${formatTime(record.updatedAt)} 路 骞虫満鍚◣ ${fmt(record.result?.plainTaxed || 0, 2)} 路 ${fmt(record.result?.finishedGsm || 0, 2)}g/m虏</span>
+      </div>
+      <div class="saved-actions">
+        <button type="button" data-action="load" data-id="${record.id}">璋冪敤</button>
+        <button type="button" data-action="delete" data-id="${record.id}">鍒犻櫎</button>
+      </div>
+    </article>
+  `).join("");
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function saveCurrentFabric() {
+  const name = fabricName.value.trim();
+  if (!name) {
+    setSaveStatus("鍏堢粰杩欎釜闈㈡枡璧蜂釜鍚嶅瓧锛屽啀淇濆瓨銆?);
+    fabricName.focus();
+    return;
+  }
+
+  const now = new Date().toISOString();
+  const records = readRecords();
+  const existingIndex = records.findIndex((record) => record.name === name);
+  const nextRecord = {
+    id: existingIndex >= 0 ? records[existingIndex].id : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    name,
+    state: collectState(),
+    result: latestResult,
+    updatedAt: now
+  };
+
+  if (existingIndex >= 0) {
+    records.splice(existingIndex, 1, nextRecord);
+  } else {
+    records.unshift(nextRecord);
+  }
+
+  writeRecords(records);
+  renderSavedList();
+  setSaveStatus(`宸蹭繚瀛橈細${name}`);
+}
+
+function loadRecord(id) {
+  const record = readRecords().find((item) => item.id === id);
+  if (!record) return;
+
+  fabricName.value = record.name;
+  applyState(record.state);
+  setSaveStatus(`宸茶皟鐢細${record.name}`);
+}
+
+function deleteRecord(id) {
+  const records = readRecords();
+  const record = records.find((item) => item.id === id);
+  if (!record) return;
+
+  if (!confirm(`鍒犻櫎鈥?{record.name}鈥濓紵`)) return;
+
+  writeRecords(records.filter((item) => item.id !== id));
+  renderSavedList();
+  setSaveStatus(`宸插垹闄わ細${record.name}`);
+}
+
+calculator.addEventListener("input", calculate);
+
+resetBtn.addEventListener("click", () => {
+  loadDefaults();
+});
+
+toggleWeft2.addEventListener("click", () => {
+  const visible = weft2Row.classList.toggle("visible");
+  toggleWeft2.classList.toggle("active", visible);
+});
+
+saveFabricBtn.addEventListener("click", saveCurrentFabric);
+
+savedList.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-action]");
+  if (!button) return;
+
+  if (button.dataset.action === "load") {
+    loadRecord(button.dataset.id);
+  }
+
+  if (button.dataset.action === "delete") {
+    deleteRecord(button.dataset.id);
+  }
+});
+
+loadDefaults();
+renderSavedList();
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  });
+}
+
+</script>
+  </body>
+</html>
+
