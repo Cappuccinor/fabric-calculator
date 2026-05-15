@@ -8,6 +8,12 @@
 - `assets/wechat-pay.png`：微信收款码。
 - `poster.html`：适合截图转发的朋友圈海报页。
 - `.github/ISSUE_TEMPLATE/order.md`：公开页面的需求提交模板。
+
+已发布入口：
+- GitHub 公开接单 Issue：https://github.com/Cappuccinor/fabric-calculator/issues/1
+- GitHub 仓库文件：https://github.com/Cappuccinor/fabric-calculator/tree/main/quick-copy-35
+- GitHub Pages 页面：https://cappuccinor.github.io/fabric-calculator/quick-copy-35/
+- 公开海报图片：https://raw.githubusercontent.com/Cappuccinor/fabric-calculator/main/quick-copy-35/poster-share.png
 - `发布文案.md`：朋友圈、微信群、小红书、闲鱼可用文案。
 - `接单话术.md`：私信成交话术。
 - `交付模板.md`：拿到需求后的交付格式。
